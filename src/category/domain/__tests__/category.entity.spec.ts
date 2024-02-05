@@ -224,4 +224,62 @@ describe("Category Validator", () => {
       });
     });
   });
+
+  describe("activate method", () => {
+    it("should a invalid category using is_active property", () => {
+      const category = Category.create({ name: "Movie" });
+      expect(() => category.deactivate()).containsErrorMessages({
+        is_active: ["is_active must be a boolean value"],
+      });
+    });
+    it("Should change is_active to true", () => {
+      const category = Category.create({ name: "Movie" });
+      category.deactivate();
+      expect(category.is_active).toBe(false);
+      category.activate();
+      expect(category.is_active).toBe(true);
+    });
+  });
+
+  describe("deactivate method", () => {
+    it("should a invalid category using is_active property", () => {
+      const category = Category.create({ name: "Movie" });
+      expect(() => category.deactivate()).containsErrorMessages({
+        is_active: ["is_active must be a boolean value"],
+      });
+    });
+    it("Should change is_active to false", () => {
+      const category = Category.create({ name: "Movie" });
+      category.activate();
+      expect(category.is_active).toBe(true);
+      category.deactivate();
+      expect(category.is_active).toBe(false);
+    });
+  });
+
+  describe("update method", () => {
+    it("should a invalid category using name property", () => {
+      const category = Category.create({ name: "Movie" });
+      expect(() =>
+        category.update({
+          name: null,
+        })
+      ).containsErrorMessages({
+        name: [
+          "name should not be empty",
+          "name must be a string",
+          "name must be shorter than or equal to 255 characters",
+        ],
+      });
+    });
+    it("Should change name and description", () => {
+      const category = Category.create({ name: "Movie" });
+      category.update({
+        name: "other name",
+        description: "other description",
+      });
+      expect(category.name).toBe("other name");
+      expect(category.description).toBe("other description");
+    });
+  });
 });

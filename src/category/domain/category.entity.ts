@@ -43,7 +43,12 @@ export class Category extends Entity {
     return category;
   }
   update(props: Partial<CategoryConstructorProps>): Category {
-    return new Category({ ...this, ...props });
+    // return new Category({ ...this, ...props });
+    this.name = props.name ?? this.name;
+    this.description = props.description ?? this.description;
+    this.is_active = props.is_active ?? this.is_active;
+    Category.validate(this);
+    return this;
   }
   changeName(name: string): void {
     this.name = name;
