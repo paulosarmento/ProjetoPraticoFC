@@ -8,6 +8,7 @@ import {
   CategoryOutput,
   CategoryOutputMapper,
 } from "../common/category-output";
+import { UpdateCategoryInput } from "./update-category.input";
 
 export class UpdateCategoryUseCase
   implements IUseCase<UpdateCategoryInput, UpdateCategoryOutput>
@@ -45,12 +46,5 @@ export class UpdateCategoryUseCase
     return CategoryOutputMapper.toOutput(category);
   }
 }
-
-export type UpdateCategoryInput = {
-  id: string;
-  name?: string;
-  description?: string;
-  is_active?: boolean;
-};
 
 export type UpdateCategoryOutput = CategoryOutput;
