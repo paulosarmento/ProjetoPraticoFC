@@ -1,4 +1,4 @@
-import { Inject, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { CategoriesController } from './categories.controller';
 import { SequelizeModule, getModelToken } from '@nestjs/sequelize';
 import { CategoryModel } from '@core/category/infra/db/sequelize/category.model';
