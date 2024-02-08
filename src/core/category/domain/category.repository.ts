@@ -17,4 +17,6 @@ export interface ICategoryRepository
     CategoryFilter,
     CategorySearchParams,
     CategorySearchResult
-  > {}
+  > {
+  [x: string]: any;
+}
