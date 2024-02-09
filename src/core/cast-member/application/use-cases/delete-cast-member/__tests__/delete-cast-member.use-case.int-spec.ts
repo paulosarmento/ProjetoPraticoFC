@@ -5,8 +5,10 @@ import {
   CastMember,
   CastMemberId,
 } from '../../../../domain/cast-member.aggregate';
-import { CastMemberSequelizeRepository } from '../../../../infra/db/sequelize/cast-member-sequelize.repository';
-import { CastMemberModel } from '@core/cast-member/infra/db/sequelize/cast-member-model';
+import {
+  CastMemberModel,
+  CastMemberSequelizeRepository,
+} from '../../../../infra/db/sequelize/cast-member-sequelize';
 
 describe('DeleteCastMemberUseCase Integration Tests', () => {
   let useCase: DeleteCastMemberUseCase;

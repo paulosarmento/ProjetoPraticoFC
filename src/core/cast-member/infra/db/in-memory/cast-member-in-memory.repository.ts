@@ -38,8 +38,8 @@ export class CastMemberInMemoryRepository
       return filter.name && filter.type
         ? containsName && hasType
         : filter.name
-          ? containsName
-          : hasType;
+        ? containsName
+        : hasType;
     });
   }
 

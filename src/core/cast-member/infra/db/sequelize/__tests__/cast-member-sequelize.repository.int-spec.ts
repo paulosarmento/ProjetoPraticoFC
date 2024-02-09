@@ -4,15 +4,17 @@ import {
 } from '../../../../domain/cast-member.aggregate';
 import { setupSequelize } from '../../../../../shared/infra/testing/helpers';
 import { NotFoundError } from '../../../../../shared/domain/errors/not-found.error';
-import { CastMemberSequelizeRepository } from '../cast-member-sequelize.repository';
+import {
+  CastMemberModel,
+  CastMemberModelMapper,
+  CastMemberSequelizeRepository,
+} from '../cast-member-sequelize';
 import {
   CastMemberSearchParams,
   CastMemberSearchResult,
 } from '../../../../domain/cast-member.repository';
 import { CastMemberTypes } from '../../../../domain/cast-member-type.vo';
 import orderBy from 'lodash/orderBy';
-import { CastMemberModel } from '../cast-member-model';
-import { CastMemberModelMapper } from '../cast-member-model-mapper';
 
 describe('CastMemberSequelizeRepository Integration Tests', () => {
   setupSequelize({ models: [CastMemberModel] });

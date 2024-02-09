@@ -5,10 +5,12 @@ import {
   CastMember,
   CastMemberId,
 } from '../../../../domain/cast-member.aggregate';
-import { CastMemberSequelizeRepository } from '../../../../infra/db/sequelize/cast-member-sequelize.repository';
+import {
+  CastMemberModel,
+  CastMemberSequelizeRepository,
+} from '../../../../infra/db/sequelize/cast-member-sequelize';
 import { CastMemberTypes } from '../../../../domain/cast-member-type.vo';
 import { UpdateCastMemberInput } from '../update-cast-member.input';
-import { CastMemberModel } from '@core/cast-member/infra/db/sequelize/cast-member-model';
 
 describe('UpdateCastMemberUseCase Integration Tests', () => {
   let useCase: UpdateCastMemberUseCase;

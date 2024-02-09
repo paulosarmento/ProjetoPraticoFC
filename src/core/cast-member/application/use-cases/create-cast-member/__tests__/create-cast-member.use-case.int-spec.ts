@@ -1,9 +1,11 @@
 import { CreateCastMemberUseCase } from '../create-cast-member.use-case';
 import { setupSequelize } from '../../../../../shared/infra/testing/helpers';
-import { CastMemberSequelizeRepository } from '../../../../infra/db/sequelize/cast-member-sequelize.repository';
+import {
+  CastMemberModel,
+  CastMemberSequelizeRepository,
+} from '../../../../infra/db/sequelize/cast-member-sequelize';
 import { CastMemberTypes } from '../../../../domain/cast-member-type.vo';
 import { CastMemberId } from '../../../../domain/cast-member.aggregate';
-import { CastMemberModel } from '@core/cast-member/infra/db/sequelize/cast-member-model';
 
 describe('CreateCastMemberUseCase Integration Tests', () => {
   let useCase: CreateCastMemberUseCase;
