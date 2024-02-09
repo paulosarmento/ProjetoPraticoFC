@@ -6,7 +6,7 @@ describe('Uuid Unit Tests', () => {
   test('should throw error when uuid is invalid', () => {
     expect(() => {
       new Uuid('invalid-uuid');
-    }).toThrow(new InvalidUuidError());
+    }).toThrowError(new InvalidUuidError());
     expect(validateSpy).toHaveBeenCalledTimes(1);
   });
 

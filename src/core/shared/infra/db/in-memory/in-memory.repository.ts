@@ -10,6 +10,7 @@ import {
 } from '../../../domain/repository/search-params';
 import { SearchResult } from '../../../domain/repository/search-result';
 import { ValueObject } from '../../../domain/value-object';
+
 export abstract class InMemoryRepository<
   E extends Entity,
   EntityId extends ValueObject,
@@ -54,6 +55,7 @@ export abstract class InMemoryRepository<
   }
   abstract getEntity(): new (...args: any[]) => E;
 }
+
 export abstract class InMemorySearchableRepository<
     E extends Entity,
     EntityId extends ValueObject,
