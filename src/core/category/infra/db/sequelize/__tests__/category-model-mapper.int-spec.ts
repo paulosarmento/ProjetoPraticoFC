@@ -1,7 +1,6 @@
-import { EntityValidationError } from '../../../../../shared/domain/validators/validation.error';
-import { Uuid } from '../../../../../shared/domain/value-objects/uuid.vo';
+import { LoadEntityError } from '../../../../../shared/domain/validators/validation.error';
 import { setupSequelize } from '../../../../../shared/infra/testing/helpers';
-import { Category } from '../../../../domain/category.aggregate';
+import { Category, CategoryId } from '../../../../domain/category.aggregate';
 import { CategoryModelMapper } from '../category-model-mapper';
 import { CategoryModel } from '../category.model';
 
@@ -20,8 +19,8 @@ describe('CategoryModelMapper Integration Tests', () => {
         'The category is valid, but it needs throws a EntityValidationError',
       );
     } catch (e) {
-      expect(e).toBeInstanceOf(EntityValidationError);
-      expect((e as EntityValidationError).error).toMatchObject([
+      expect(e).toBeInstanceOf(LoadEntityError);
+      expect((e as LoadEntityError).error).toMatchObject([
         {
           name: ['name must be shorter than or equal to 255 characters'],
         },
@@ -41,7 +40,7 @@ describe('CategoryModelMapper Integration Tests', () => {
     const aggregate = CategoryModelMapper.toEntity(model);
     expect(aggregate.toJSON()).toStrictEqual(
       new Category({
-        category_id: new Uuid('5490020a-e866-4229-9adc-aa44b83234c4'),
+        category_id: new CategoryId('5490020a-e866-4229-9adc-aa44b83234c4'),
         name: 'some value',
         description: 'some description',
         is_active: true,

@@ -1,7 +1,6 @@
 import { CategoryModel } from '../category.model';
 import { CategorySequelizeRepository } from '../category-sequelize.repository';
-import { Category } from '../../../../domain/category.aggregate';
-import { Uuid } from '../../../../../shared/domain/value-objects/uuid.vo';
+import { Category, CategoryId } from '../../../../domain/category.aggregate';
 import { NotFoundError } from '../../../../../shared/domain/errors/not-found.error';
 import { CategoryModelMapper } from '../category-model-mapper';
 import {
@@ -21,12 +20,12 @@ describe('CategorySequelizeRepository Integration Test', () => {
   it('should inserts a new entity', async () => {
     const category = Category.fake().aCategory().build();
     await repository.insert(category);
-    const entity = await repository.findById(category.category_id);
-    expect(entity.toJSON()).toStrictEqual(category.toJSON());
+    const categoryCreated = await repository.findById(category.category_id);
+    expect(categoryCreated.toJSON()).toStrictEqual(category.toJSON());
   });
 
   it('should finds a entity by id', async () => {
-    let entityFound = await repository.findById(new Uuid());
+    let entityFound = await repository.findById(new CategoryId());
     expect(entityFound).toBeNull();
 
     const entity = Category.fake().aCategory().build();
@@ -62,7 +61,7 @@ describe('CategorySequelizeRepository Integration Test', () => {
   });
 
   it('should throw error on delete when a entity not found', async () => {
-    const categoryId = new Uuid();
+    const categoryId = new CategoryId();
     await expect(repository.delete(categoryId)).rejects.toThrow(
       new NotFoundError(categoryId.id, Category),
     );
@@ -111,6 +110,7 @@ describe('CategorySequelizeRepository Integration Test', () => {
         }),
       );
     });
+
     it('should order by created_at DESC when search params are null', async () => {
       const created_at = new Date();
       const categories = Category.fake()
@@ -167,6 +167,7 @@ describe('CategorySequelizeRepository Integration Test', () => {
           per_page: 2,
         }).toJSON(true),
       );
+
       searchOutput = await repository.search(
         new CategorySearchParams({
           page: 2,
@@ -183,6 +184,7 @@ describe('CategorySequelizeRepository Integration Test', () => {
         }).toJSON(true),
       );
     });
+
     it('should apply paginate and sort', async () => {
       expect(repository.sortableFields).toStrictEqual(['name', 'created_at']);
 

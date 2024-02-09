@@ -4,10 +4,11 @@ import { setupSequelize } from '../../../../../shared/infra/testing/helpers';
 
 describe('CategoryModel Integration Tests', () => {
   setupSequelize({ models: [CategoryModel] });
+
   test('mapping props', () => {
     const attributesMap = CategoryModel.getAttributes();
     const attributes = Object.keys(CategoryModel.getAttributes());
-    // console.log(attributes, attributesMap);
+
     expect(attributes).toStrictEqual([
       'category_id',
       'name',
@@ -31,6 +32,7 @@ describe('CategoryModel Integration Tests', () => {
       allowNull: false,
       type: DataType.STRING(255),
     });
+
     const descriptionAttr = attributesMap.description;
     expect(descriptionAttr).toMatchObject({
       field: 'description',
@@ -46,6 +48,7 @@ describe('CategoryModel Integration Tests', () => {
       allowNull: false,
       type: DataType.BOOLEAN(),
     });
+
     const createdAtAttr = attributesMap.created_at;
     expect(createdAtAttr).toMatchObject({
       field: 'created_at',
