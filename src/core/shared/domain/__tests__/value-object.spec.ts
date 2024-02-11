@@ -5,6 +5,7 @@ class StringValueObject extends ValueObject {
     super();
   }
 }
+
 class ComplexValueObject extends ValueObject {
   constructor(
     readonly prop1: string,

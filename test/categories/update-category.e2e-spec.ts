@@ -6,7 +6,7 @@ import { CategoryOutputMapper } from '../../src/core/category/application/use-ca
 import { Uuid } from '../../src/core/shared/domain/value-objects/uuid.vo';
 import { startApp } from '../../src/nest-modules/shared-module/testing/helpers';
 import { CategoriesController } from '../../src/nest-modules/categories-module/categories.controller';
-import { Category } from '../../src/core/category/domain/category.entity';
+import { Category } from '../../src/core/category/domain/category.aggregate';
 import { UpdateCategoryFixture } from '../../src/nest-modules/categories-module/testing/category-fixture';
 
 describe('CategoriesController (e2e)', () => {
@@ -118,19 +118,19 @@ describe('CategoriesController (e2e)', () => {
           const id = res.body.data.id;
           const categoryUpdated = await categoryRepo.findById(new Uuid(id));
           const presenter = CategoriesController.serialize(
-            CategoryOutputMapper.toOutput(categoryUpdated),
+            CategoryOutputMapper.toOutput(categoryUpdated!),
           );
           const serialized = instanceToPlain(presenter);
           expect(res.body.data).toStrictEqual(serialized);
           expect(res.body.data).toStrictEqual({
             id: serialized.id,
             created_at: serialized.created_at,
-            name: expected.name ?? categoryUpdated.name,
+            name: expected.name ?? categoryUpdated!.name,
             description:
               'description' in expected
                 ? expected.description
-                : categoryUpdated.description,
-            is_active: expected.is_active ?? categoryUpdated.is_active,
+                : categoryUpdated!.description,
+            is_active: expected.is_active ?? categoryUpdated!.is_active,
           });
         },
       );

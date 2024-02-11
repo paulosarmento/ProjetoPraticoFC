@@ -10,6 +10,7 @@ import {
 } from '../../../domain/repository/search-params';
 import { SearchResult } from '../../../domain/repository/search-result';
 import { ValueObject } from '../../../domain/value-object';
+
 export abstract class InMemoryRepository<
   E extends Entity,
   EntityId extends ValueObject,
@@ -44,7 +45,7 @@ export abstract class InMemoryRepository<
     this.items.splice(indexFound, 1);
   }
 
-  async findById(entity_id: EntityId): Promise<E> {
+  async findById(entity_id: EntityId): Promise<E | null> {
     const item = this.items.find((item) => item.entity_id.equals(entity_id));
     return typeof item === 'undefined' ? null : item;
   }
@@ -54,6 +55,7 @@ export abstract class InMemoryRepository<
   }
   abstract getEntity(): new (...args: any[]) => E;
 }
+
 export abstract class InMemorySearchableRepository<
     E extends Entity,
     EntityId extends ValueObject,
