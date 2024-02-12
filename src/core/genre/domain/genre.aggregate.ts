@@ -61,7 +61,7 @@ export class Genre extends AggregateRoot {
   }
 
   syncCategoriesId(categories_id: CategoryId[]) {
-    if (categories_id.length) {
+    if (!categories_id.length) {
       throw new Error('Categories id is empty');
     }
 
@@ -81,6 +81,7 @@ export class Genre extends AggregateRoot {
   get entity_id() {
     return this.genre_id;
   }
+
   validate(fields?: string[]) {
     const validator = GenreValidatorFactory.create();
     return validator.validate(this.notification, this, fields);
