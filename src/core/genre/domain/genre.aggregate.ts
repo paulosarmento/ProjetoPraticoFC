@@ -81,6 +81,7 @@ export class Genre extends AggregateRoot {
   get entity_id() {
     return this.genre_id;
   }
+
   validate(fields?: string[]) {
     const validator = GenreValidatorFactory.create();
     return validator.validate(this.notification, this, fields);
