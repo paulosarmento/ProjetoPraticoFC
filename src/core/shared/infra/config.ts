@@ -13,6 +13,7 @@ export class Config {
       logging: Config.env.DB_LOGGING === 'true',
     };
   }
+
   static bucketName() {
     Config.readEnv();
 

@@ -1,4 +1,4 @@
-import { ApplicationService } from '@core/shared/application/application.service';
+import { ApplicationService } from '../../../shared/application/application.service';
 import { IStorage } from '../../../shared/application/storage.interface';
 import { IUseCase } from '../../../shared/application/use-case.interface';
 import { NotFoundError } from '../../../shared/domain/errors/not-found.error';

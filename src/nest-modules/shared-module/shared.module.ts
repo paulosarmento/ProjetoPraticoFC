@@ -6,6 +6,7 @@ import { DomainEventMediator } from '../../core/shared/domain/events/domain-even
 import EventEmitter2 from 'eventemitter2';
 import { ApplicationService } from '../../core/shared/application/application.service';
 import { IUnitOfWork } from '../../core/shared/domain/repository/unit-of-work.interface';
+
 @Global()
 @Module({
   providers: [
@@ -37,6 +38,6 @@ import { IUnitOfWork } from '../../core/shared/domain/repository/unit-of-work.in
       scope: Scope.REQUEST,
     },
   ],
+  exports: ['IStorage', ApplicationService],
 })
-
 export class SharedModule {}

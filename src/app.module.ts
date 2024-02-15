@@ -11,11 +11,11 @@ import { VideosModule } from './nest-modules/videos-module/videos.module';
   imports: [
     ConfigModule.forRoot(),
     DatabaseModule,
+    SharedModule,
     CategoriesModule,
     CastMembersModule,
-    SharedModule,
     GenresModule,
-    VideosModule
+    VideosModule,
   ],
 })
 export class AppModule {}

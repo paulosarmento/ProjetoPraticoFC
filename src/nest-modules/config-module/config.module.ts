@@ -25,6 +25,7 @@ const joiJson = Joi.extend((joi) => {
     },
   };
 });
+
 type DB_SCHEMA_TYPE = {
   DB_VENDOR: 'mysql' | 'sqlite';
   DB_HOST: string;
