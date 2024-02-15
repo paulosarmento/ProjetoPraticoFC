@@ -18,7 +18,7 @@ Content-Type: application/json
 GET http://localhost:3000/categories
 
 ###
-GET http://localhost:3000/categories/1e62c879-989c-43fc-973d-ce7d531598bc
+GET http://localhost:3000/categories/{{categoryId}}
 
 
 ### 
@@ -106,3 +106,15 @@ Content-Type: application/json
         "{{castMemberId}}"
     ]
 }
+
+###
+# @name uploadVideo
+PATCH http://localhost:3000/videos/{{videoId}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary1234
+
+------WebKitFormBoundary1234
+Content-Disposition: form-data; name="video"; filename="video.mp4"
+Content-Type: video/mp4
+
+< ./package.json
+------WebKitFormBoundary1234--
