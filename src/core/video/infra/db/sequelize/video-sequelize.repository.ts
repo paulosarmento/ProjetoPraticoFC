@@ -239,8 +239,8 @@ export class VideoSequelizeRepository implements IVideoRepository {
     if (affectedRows !== 1) {
       throw new NotFoundError(id.id, this.getEntity());
     }
-    
-     //this.uow.addAggregateRoot(video);
+
+    //this.uow.addAggregateRoot(video);
   }
 
   private async _get(id: string): Promise<VideoModel | null> {

@@ -1,4 +1,4 @@
-import { IStorage } from '@core/shared/application/storage.interface';
+import { IStorage } from '../../../shared/application/storage.interface';
 import { IUseCase } from '../../../shared/application/use-case.interface';
 import { NotFoundError } from '../../../shared/domain/errors/not-found.error';
 import { IUnitOfWork } from '../../../shared/domain/repository/unit-of-work.interface';
@@ -16,7 +16,7 @@ export class UploadImageMediasUseCase
   constructor(
     private uow: IUnitOfWork,
     private videoRepo: IVideoRepository,
-    private storage: IStorage
+    private storage: IStorage,
   ) {}
 
   async execute(

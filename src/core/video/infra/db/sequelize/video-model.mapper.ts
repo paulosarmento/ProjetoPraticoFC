@@ -186,7 +186,7 @@ export class VideoModelMapper {
               } as any)
             : null;
         })
-        .filter(Boolean)as ImageMediaModel[],
+        .filter(Boolean) as ImageMediaModel[],
 
       audio_video_medias: [trailer, video]
         .map((audio_video_media, index) => {
@@ -204,7 +204,7 @@ export class VideoModelMapper {
               } as any)
             : null;
         })
-        .filter(Boolean)as AudioVideoMediaModel[],
+        .filter(Boolean) as AudioVideoMediaModel[],
       categories_id: categories_id.map((category_id) =>
         VideoCategoryModel.build({
           video_id: entity.video_id.id,
