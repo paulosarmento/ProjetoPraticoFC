@@ -118,3 +118,7 @@ Content-Type: video/mp4
 
 < ./package.json
 ------WebKitFormBoundary1234--
+
+###
+
+GET http://localhost:3000/fake-event
