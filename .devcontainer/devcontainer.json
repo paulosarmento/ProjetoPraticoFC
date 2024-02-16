@@ -27,7 +27,8 @@
 			"extensions": [
 				"codeium.codeium",
 				"firsttris.vscode-jest-runner",
-				"orta.vscode-jest"
+				"orta.vscode-jest",
+				"humao.rest-client"
 			]
 		}
 	}
