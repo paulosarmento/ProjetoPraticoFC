@@ -15,18 +15,15 @@ import { RabbitmqModule } from './nest-modules/rabbitmq-module/rabbitmq.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    DatabaseModule,
     SharedModule,
+    DatabaseModule,
     EventModule,
     UseCaseModule,
+    RabbitmqModule.forRoot(),
     CategoriesModule,
     CastMembersModule,
     GenresModule,
     VideosModule,
-    // RabbitMQModule.forRoot(RabbitMQModule, {
-    //   uri: 'amqp://admin:admin@rabbitmq:5672',
-    // }),
-    RabbitmqModule.forRoot(),
   ],
   providers: [RabbitMQFakeConsumer],
   controllers: [RabbitmqFakeController],
