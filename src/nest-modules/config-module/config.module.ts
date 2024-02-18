@@ -72,6 +72,7 @@ export const CONFIG_GOOGLE_SCHEMA: Joi.StrictSchemaMap<CONFIG_GOOGLE_SCHEMA_TYPE
     GOOGLE_CLOUD_CREDENTIALS: joiJson.object().required(),
     GOOGLE_CLOUD_STORAGE_BUCKET_NAME: Joi.string().required(),
   };
+
 type CONFIG_RABBITMQ_SCHEMA_TYPE = {
   RABBITMQ_URI: string;
 };

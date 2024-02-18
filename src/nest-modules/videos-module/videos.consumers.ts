@@ -5,11 +5,12 @@ import { AudioVideoMediaStatus } from '../../core/shared/domain/value-objects/au
 import { ProcessAudioVideoMediasUseCase } from '../../core/video/application/use-cases/process-audio-video-medias/process-audio-video-medias.use-case';
 import { ModuleRef } from '@nestjs/core';
 import { RabbitmqConsumeErrorFilter } from '../rabbitmq-module/rabbitmq-consume-error/rabbitmq-consume-error.filter';
-@UseFilters( RabbitmqConsumeErrorFilter)
+
+@UseFilters(RabbitmqConsumeErrorFilter)
 @Injectable()
 export class VideosConsumers {
   constructor(private moduleRef: ModuleRef) {}
-  
+
   @RabbitSubscribe({
     exchange: 'direct.delayed',
     routingKey: 'videos.convert',
@@ -23,7 +24,7 @@ export class VideosConsumers {
   })
   async onProcessVideo(msg: {
     video: {
-      resource_id: string;
+      resource_id: string; //video_id.field
       encoded_video_folder: string;
       status: 'COMPLETED' | 'FAILED';
     };
@@ -36,15 +37,22 @@ export class VideosConsumers {
       encoded_location: msg.video?.encoded_video_folder,
       status: msg.video?.status as AudioVideoMediaStatus,
     });
-      await new ValidationPipe({
-        errorHttpStatusCode: 422,
-      }).transform(input, {
-        metatype: ProcessAudioVideoMediasInput,
-        type: 'body',
-      });
-      const useCase = await this.moduleRef.resolve(
-        ProcessAudioVideoMediasUseCase,
-      );
-      await useCase.execute(input);
+
+    await new ValidationPipe({
+      errorHttpStatusCode: 422,
+    }).transform(input, {
+      metatype: ProcessAudioVideoMediasInput,
+      type: 'body',
+    });
+    const useCase = await this.moduleRef.resolve(
+      ProcessAudioVideoMediasUseCase,
+    );
+    await useCase.execute(input);
   }
 }
+
+// class FakeError extends Error {
+//   constructor() {
+//     super('Fake error');
+//   }
+// }
