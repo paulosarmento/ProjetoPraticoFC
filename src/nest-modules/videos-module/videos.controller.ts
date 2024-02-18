@@ -21,7 +21,8 @@ import { UpdateVideoDto } from './dto/update-video.dto';
 import { UpdateVideoInput } from '../../core/video/application/use-cases/update-video/update-video.input';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { UploadAudioVideoMediaInput } from '../../core/video/application/use-cases/upload-audio-video-medias/upload-audio-video-media.input';
-
+import { ProcessAudioVideoMediasUseCase } from '../../core/video/application/use-cases/process-audio-video-medias/process-audio-video-medias.use-case';
+import { ModuleRef } from '@nestjs/core';
 @Controller('videos')
 export class VideosController {
   @Inject(CreateVideoUseCase)
