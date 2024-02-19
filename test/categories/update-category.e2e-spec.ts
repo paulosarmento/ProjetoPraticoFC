@@ -43,7 +43,7 @@ describe('CategoriesController (e2e)', () => {
         async ({ id, send_data, expected }) => {
           return request(nestApp.app.getHttpServer())
             .patch(`/categories/${id}`)
-            .authenticate(nestApp.app)
+            .authenticate(nestApp.app, true)
             .send(send_data)
             .expect(expected.statusCode)
             .expect(expected);
@@ -61,7 +61,7 @@ describe('CategoriesController (e2e)', () => {
       test.each(arrange)('when body is $label', ({ value }) => {
         return request(app.app.getHttpServer())
           .patch(`/categories/${uuid}`)
-          .authenticate(app.app)
+          .authenticate(app.app, true)
           .send(value.send_data)
           .expect(422)
           .expect(value.expected);
@@ -88,7 +88,7 @@ describe('CategoriesController (e2e)', () => {
         await categoryRepo.insert(category);
         return request(app.app.getHttpServer())
           .patch(`/categories/${category.category_id.id}`)
-          .authenticate(app.app)
+          .authenticate(app.app, true)
           .send(value.send_data)
           .expect(422)
           .expect(value.expected);
@@ -113,7 +113,7 @@ describe('CategoriesController (e2e)', () => {
 
           const res = await request(appHelper.app.getHttpServer())
             .patch(`/categories/${categoryCreated.category_id.id}`)
-            .authenticate(appHelper.app)
+            .authenticate(appHelper.app, true)
             .send(send_data)
             .expect(200);
           const keyInResponse = UpdateCategoryFixture.keysInResponse;
