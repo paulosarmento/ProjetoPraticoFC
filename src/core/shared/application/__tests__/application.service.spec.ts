@@ -48,6 +48,7 @@ describe('ApplicationService Unit Tests', () => {
       await applicationService.finish();
       expect(publishSpy).toBeCalledWith(aggregateRoot);
       expect(commitSpy).toBeCalled();
+      expect(publishIntegrationEventsSpy).toBeCalledWith(aggregateRoot);
     });
   });
 

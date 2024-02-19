@@ -125,3 +125,38 @@ GET http://localhost:3000/fake-event
 
 ###
 GET http://localhost:3000/rabbitmq-fake
+
+###
+
+### Estou usando host.docker.internal, porque no momento o dev container com rest client está fazendo requisição de dentro do container, 
+### então por localhost:8080 não funciona, mas se estiver usando o rest client fora do container, pode usar localhost:8080
+POST http://host.docker.internal:8080/realms/codeflix/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+username=admin@user.com
+&password=secret
+&grant_type=password
+&client_id=codeflix-admin-frontend
+
+###
+
+POST http://localhost:3000/auth
+Content-Type: application/json
+
+{
+    "email": "admin@user.com",
+    "password": "123456"   
+}
+
+### configuração do openid connect server
+GET http://host.docker.internal:8080/realms/codeflix/.well-known/openid-configuration
+
+### certificados
+GET http://host.docker.internal:8080/realms/codeflix/protocol/openid-connect/certs
+
+###
+
+GET http://localhost:3000/auth
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwibmFtZSI6InRlc3QiLCJpYXQiOjE3MDgzMzY0NDR9.tuFYBLTY-gPoFE3BZ91IcP-ioPst8jFKTx8IIr1CaCgLcCyE4bqevFs4jkGxw8J6BrbJQx2d9mDtgeJ3AbvJEp9bnzo1-PoDaqM0DTMg39MYDOSwJIegS5t76ZWR2CDJ1jNCYyFNSfTvHdULeqbSd62WDORYc2pPN18Jx0kQce0PuTgaQo_1xpqUQv5gfeDCi13WxUGA67xgGXUpYpaUGJXF-T2e4Rg6wShByHn8quxDIRz5sv7vVQ2JY5bLaI_xwojrs9xrj44RgCzcQGoaTFrbglxI0CMY5tqPFyfCnGEfwpvRoXvAZ5hVvkL8T8xnmKGd5QTmEQ364KXGrglKOw
+
