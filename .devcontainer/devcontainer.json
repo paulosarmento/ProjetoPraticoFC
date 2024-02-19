@@ -28,7 +28,8 @@
 				"codeium.codeium",
 				"firsttris.vscode-jest-runner",
 				"orta.vscode-jest",
-				"humao.rest-client"
+				"humao.rest-client",
+				"esbenp.prettier-vscode"
 			]
 		}
 	}
