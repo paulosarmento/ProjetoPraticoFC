@@ -137,3 +137,20 @@ username=admin@user.com
 &password=secret
 &grant_type=password
 &client_id=codeflix-admin-frontend
+
+###
+
+POST http://localhost:3000/auth
+Content-Type: application/json
+
+{
+    "email": "admin@user.com",
+    "password": "123456"   
+}
+
+###
+
+GET http://localhost:3000/auth
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwibmFtZSI6InRlc3QiLCJpYXQiOjE3MDgzMzM5NjYsImV4cCI6MTcwODMzNDAyNn0.LnerCfi_9VqNhch9Kp_4dSQAscLpDoct1FVPoyoCMKI
+
