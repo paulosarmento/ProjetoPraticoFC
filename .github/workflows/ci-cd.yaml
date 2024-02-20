@@ -18,7 +18,7 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
-  FOLDER_NAME: ${{ github.event.repository.name }}-app
+  FOLDER_NAME: ${{ github.event.repository.name }}app
 
 jobs:
   ci:
@@ -105,7 +105,8 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tagging.outputs.new_tag }}
+          tags: ${{ env.REGISTRY }}/$(echo "${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]'):latest,${{ env.REGISTRY }}/$(echo "${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]'):${{ steps.tagging.outputs.new_tag }}
+
           cache-from: type=gha
           cache-to: type=gha,mode=max
           file: Dockerfile.prod
