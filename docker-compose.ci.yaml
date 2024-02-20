@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile.prod
     restart: on-failure
+    mem_limit: 1G
     ports:
       - 3000:3000
     volumes:
@@ -22,7 +23,7 @@ services:
       - GOOGLE_CLOUD_CREDENTIALS
 
   db:
-    image: mysql
+    image: mysql:8.0.30-debian
     environment:
       - MYSQL_DATABASE=micro_videos
       - MYSQL_ROOT_PASSWORD=root
