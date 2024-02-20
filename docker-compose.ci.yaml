@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile.prod
     restart: on-failure
-    mem_limit: 512M
+    mem_limit: 768M
     ports:
       - 3000:3000
     volumes:
