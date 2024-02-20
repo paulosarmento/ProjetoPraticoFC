@@ -22,7 +22,7 @@ services:
       - GOOGLE_CLOUD_CREDENTIALS
 
   db:
-    image: mysql
+    image: mysql:8.0.30-debian
     environment:
       - MYSQL_DATABASE=micro_videos
       - MYSQL_ROOT_PASSWORD=root
